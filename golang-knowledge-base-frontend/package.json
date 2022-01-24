@@ -6,7 +6,15 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint:ts": "eslint src --ext .ts,.tsx",
+    "lint:ts-error-only": "eslint src --quiet --ext .ts,.tsx",
+    "test:report": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov --runInBand",
+    "lint:scss": "stylelint \"./src/**/*.scss\"",
+    "prettier": "prettier --write \"src/**/*.{ts,html,scss}\" ",
+    "verify": "npm run lint:ts && npm run lint:scss && npm run test:report",
+    "ready-to-git-push": "npm run verify && npm run build:prod",
+    "pr": "npm run verify && npm run build:prod"
   },
   "private": true,
   "dependencies": {
